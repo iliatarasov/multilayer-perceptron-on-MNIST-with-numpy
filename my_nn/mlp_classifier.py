@@ -69,12 +69,10 @@ class MLPClassifier:
         return functools.reduce((lambda x, y: y(x)), layer_grads, output_grad)
     
     def softmax_crossentropy_with_logits(self, logits, reference_answers):
-        #logits = logits / logits.max()
         softmax = np.exp(logits) / (np.exp(logits).sum() + 1e-6)
         return -np.log(softmax[0, reference_answers] + 1e-6)[0]
     
     def grad_softmax_crossentropy_with_logits(self, logits, reference_answers):
-        #logits = logits / logits.max()
         softmax = np.exp(logits) / (np.exp(logits).sum() + 1e-6)
         softmax[0, reference_answers] -= 1
         return softmax    
@@ -92,9 +90,6 @@ class MLPClassifier:
             
         if show_progress == True:
             show_progress = 1
-        
-        self.learning_curve = np.zeros(n_epochs)
-        self.accuracy_curve = np.zeros(n_epochs)
         
         for epoch in range(1, n_epochs + 1):
             
@@ -120,7 +115,6 @@ class MLPClassifier:
             self.metrics['balanced_accuracy_score'].append(balanced_accuracy_score(y_train, y_pred))
             self.metrics['recall_score'].append(recall_score(y_train, y_pred, average='micro'))
             self.metrics['precision_score'].append(precision_score(y_train, y_pred, average='micro'))
-            #self.metrics['roc_auc_score'].append(roc_auc_score(y_train, y_pred, multi_class='ovr'))
             self.metrics['loss'].append(loss)
             
 
