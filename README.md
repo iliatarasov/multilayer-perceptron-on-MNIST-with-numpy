@@ -7,3 +7,5 @@ Here is a quick layout of the notebook:
 - After that I compare the results and discuss the shortcomings of my numpy neural net
 
 This notebook uses my networks as modules, the source code for which can be found in the corresponding folders. 
+
+Update 13 July 2023: I have created a follow-up project that extends this network to a [convolutional neural network](https://github.com/iliatarasov/convolutional-neural-network-on-MNIST) also made from scratch. 
